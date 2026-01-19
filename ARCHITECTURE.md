@@ -32,18 +32,20 @@ graph TD
 ```
 
 ## Phase 3: Integration Required
-To achieve the full persona, the **Base Ultravox Model** must be replaced with a **Fine-tuned Version**.
+To achieve the full persona, we must execute the following **TODOs** to replace the Generic Brain.
 
 ```mermaid
 graph TD
-    Dataset[("Custom Dataset<br/>(Books, Lectures, Q&A)")] 
+    Dataset[("Custom Dataset<br/>(Books, Lectures, Q&A)<br/><b>[TODO: Prepare JSONL]</b>")] 
     
-    subgraph Training Phase
-        Base[Ultravox v0.4 Base] --> Trainer
+    subgraph "Training Phase [TODO: Run on RunPod]"
+        Base[Ultravox v0.4 Base] --> Trainer[Ultravox Trainer]
         Dataset --> Trainer
         Trainer -->|Fine-tuning| FT_Model{Ultravox Swamiji Model}
     end
     
+    style Dataset fill:#ffcccc,stroke:#ff0000,stroke-width:2px
+    style Trainer fill:#ffcccc,stroke:#ff0000,stroke-width:2px
     style FT_Model fill:#ffff99,stroke:#ff6600,stroke-width:4px
     
     subgraph Inference Pipeline Phase 3
@@ -53,7 +55,7 @@ graph TD
     end
 ```
 
-### Integration Steps
-1.  **Prepare Data**: Format existing transcripts into `(audio, text)` or `(text instruction, text response)` pairs appropriate for Ultravox training.
-2.  **Fine-tune**: Run Ultravox training on the A6000 pod.
-3.  **Plug-in**: Update `ultravox_handler.py` to point to the new `checkpoint` instead of `fixie-ai/ultravox-v0_4`.
+### Integration Steps (Detailed)
+1.  **[TODO] Data Prep**: Convert your corpus into Ultravox-compatible `jsonl` format containing `{"audio": ..., "text": ...}` (or text-only instruction tuning).
+2.  **[TODO] Training**: Use the A6000 GPU to fine-tune `fixie-ai/ultravox-v0_4` on this dataset.
+3.  **[TODO] Inference Switch**: Update `ultravox_handler.py` to point to the new local checkpoint.
