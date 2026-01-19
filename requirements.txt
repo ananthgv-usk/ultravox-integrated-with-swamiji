@@ -1,0 +1,9 @@
+torch
+transformers
+soundfile
+numpy
+librosa
+openai-whisper
+git+https://github.com/hubertsiuzdak/snac.git
+peft
+git+https://github.com/fixie-ai/ultravox.git
